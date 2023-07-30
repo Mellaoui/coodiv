@@ -15,7 +15,7 @@ class MatiereController extends Controller
         $this->authorize('viewAny', Matiere::class);
 
         return inertia()->render('Matiere/MatiereIndex', [
-            'matieres' => Matiere::paginate(10)
+            'matieres' => Matiere::paginate(5)
         ]);
     }
 

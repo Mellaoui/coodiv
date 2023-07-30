@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreOrderRequest extends FormRequest
 {
@@ -27,7 +28,10 @@ class StoreOrderRequest extends FormRequest
 
             'tracking_number' => ['required', 'string', 'unique:orders,tracking_number'],
             'quantity' => ['required', 'integer'],
-            'status' => ['required', 'string', 'in:shipped,delivered,returned'],
+            'status' => [
+                'required', 'string',
+                Rule::in(['pending', 'shipped', 'delivered', 'returned'])
+            ],
         ];
     }
 }

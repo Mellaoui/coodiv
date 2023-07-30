@@ -25,7 +25,7 @@ class OrderFactory extends Factory
             'tracking_number' => fake()->unique()->randomNumber(8, true),
             'quantity' => fake()->numberBetween(1, 100),
             'status' => fake()->randomElement([
-                'shipped', 'delivered', 'returned'
+                'pending', 'shipped', 'delivered', 'returned'
             ]),
         ];
     }

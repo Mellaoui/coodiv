@@ -15,24 +15,24 @@ defineOptions({
 });
 
 const props = defineProps({
-    matiere: Object,
+    category: Object,
 });
 
 const form = useForm({
-    name: props.matiere.name,
+    name: props.category.name,
 });
 </script>
 
 <template>
     Done
-    <Head title="Edit Material" />
+    <Head title="Edit Category" />
 
     <div
         class="relative px-4 pt-5 pb-4 mx-auto overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
     >
         <form
             @submit.prevent="
-                form.patch(route('matieres.update', props.matiere.id))
+                form.patch(route('categories.update', props.category.id))
             "
         >
             <div>
@@ -41,7 +41,7 @@ const form = useForm({
                         as="h3"
                         class="text-base font-semibold leading-6 text-gray-900"
                     >
-                        Edit Material
+                        Edit Category
                     </h3>
 
                     <div class="mt-2">
@@ -80,7 +80,7 @@ const form = useForm({
 
                 <Link
                     as="button"
-                    :href="route('matieres.index')"
+                    :href="route('categories.index')"
                     class="inline-flex justify-center w-full px-3 py-2 mt-3 text-sm font-semibold text-gray-900 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
                 >
                     Back

@@ -12,7 +12,9 @@ import {
     EnvelopeOpenIcon,
     UsersIcon,
 } from "@heroicons/vue/24/outline";
-import { computed } from "vue";
+
+// -- Components -- //
+import Pagination from "@/Components/Pagination.vue";
 
 // -- End Emports -- //
 
@@ -296,50 +298,14 @@ const stats = [
                                 </tr>
                             </tbody>
                         </table>
-                        <nav
-                            class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
-                            aria-label="Pagination"
-                        >
-                            <div class="hidden sm:block">
-                                <p class="text-sm text-gray-700">
-                                    <span>Showing&nbsp;</span>
 
-                                    <span class="font-medium">{{
-                                        props.products.from
-                                    }}</span>
-
-                                    <span>&nbsp;to&nbsp;</span>
-
-                                    <span class="font-medium">{{
-                                        props.products.to
-                                    }}</span>
-
-                                    <span>&nbsp;of&nbsp;</span>
-
-                                    <span class="font-medium">{{
-                                        props.products.total
-                                    }}</span>
-
-                                    <span>&nbsp;results</span>
-                                </p>
-                            </div>
-
-                            <div
-                                class="flex justify-between flex-1 sm:justify-end"
-                            >
-                                <Link
-                                    :href="props.products.prev_page_url"
-                                    class="relative inline-flex items-center px-3 py-2 text-sm font-semibold text-gray-900 bg-white rounded-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 disabled:opacity-50"
-                                    >Previous
-                                </Link>
-
-                                <Link
-                                    :href="props.products.next_page_url"
-                                    class="relative inline-flex items-center px-3 py-2 ml-3 text-sm font-semibold text-gray-900 bg-white rounded-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 disabled:opacity-50"
-                                    >Next
-                                </Link>
-                            </div>
-                        </nav>
+                        <Pagination
+                            :from="props.products.from"
+                            :to="props.products.to"
+                            :total="props.products.total"
+                            :prev="props.products.prev_page_url"
+                            :next="props.products.next_page_url"
+                        />
                     </div>
                 </div>
             </div>

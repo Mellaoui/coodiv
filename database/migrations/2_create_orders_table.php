@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->string('tracking_number')->unique();
             $table->integer('quantity');
-            $table->enum('status', ['shipped', 'delivered', 'returned']);
+            $table->enum('status', ['pending', 'shipped', 'delivered', 'returned']);
             $table->timestamps();
         });
     }

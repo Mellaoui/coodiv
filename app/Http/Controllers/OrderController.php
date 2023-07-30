@@ -5,22 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response as InertiaResponse;
 
 class OrderController extends Controller
 {
-    /**
-     * @throws AuthorizationException
-     */
     public function index(): InertiaResponse
     {
         $this->authorize('viewAny', Order::class);
 
         $orders = Order::with('product.media', 'user')
             ->orderBy('updated_at', 'desc')
-            ->paginate(10);
+            ->paginate(5);
 
         foreach ($orders as $order) {
             $order['total_price'] = $order->total_price;
@@ -31,9 +27,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function create(): InertiaResponse
     {
         $this->authorize('create', Order::class);
@@ -41,9 +34,6 @@ class OrderController extends Controller
         return inertia()->render('Orders/CreateOrder');
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function store(StoreOrderRequest $request): RedirectResponse
     {
         $this->authorize('create', Order::class);
@@ -54,9 +44,6 @@ class OrderController extends Controller
             ->with('success', 'Order created.');
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function show(Order $order): InertiaResponse
     {
         $this->authorize('view', $order);
@@ -68,9 +55,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function edit(Order $order): InertiaResponse
     {
         $this->authorize('update', $order);
@@ -80,9 +64,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function update(UpdateOrderRequest $request, Order $order): RedirectResponse
     {
         $this->authorize('update', $order);
@@ -95,9 +76,6 @@ class OrderController extends Controller
             ->with('success', 'Order updated.');
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function destroy(Order $order): RedirectResponse
     {
         $this->authorize('delete', $order);

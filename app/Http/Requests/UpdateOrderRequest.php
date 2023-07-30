@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\Order;
 
 class UpdateOrderRequest extends FormRequest
 {
@@ -28,12 +29,12 @@ class UpdateOrderRequest extends FormRequest
 
             'tracking_number' => [
                 'required', 'string',
-                Rule::unique('orders')->ignore($this->order->id)
+                Rule::unique(Order::class)->ignore($this->route('order')->id)
             ],
             'quantity' => ['required', 'integer'],
             'status' => [
                 'required', 'string',
-                Rule::in(['shipped', 'delivered', 'returned'])
+                Rule::in(['pending', 'shipped', 'delivered', 'returned'])
             ],
         ];
     }

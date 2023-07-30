@@ -7,15 +7,11 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Matiere;
 use App\Models\Product;
-use Illuminate\Auth\Access\AuthorizationException;
 use Inertia\Response as InertiaResponse;
 use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
-    /**
-     * @throws AuthorizationException
-     */
     public function index(): InertiaResponse
     {
         $this->authorize('viewAny', Product::class);
@@ -24,13 +20,10 @@ class ProductController extends Controller
         return inertia()->render('Product/ProductIndex', [
             'products' => Product::with('category', 'matiere', 'media')
                 ->orderBy('updated_at', 'desc')
-                ->paginate(10)
+                ->paginate(5)
         ]);
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function create(): InertiaResponse
     {
         $this->authorize('create', Product::class);
@@ -41,9 +34,6 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function store(StoreProductRequest $request): RedirectResponse
     {
         $this->authorize('create', Product::class);
@@ -54,9 +44,6 @@ class ProductController extends Controller
             ->with('success', 'Product created');
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function show(Product $product): InertiaResponse
     {
         $this->authorize('view', $product);
@@ -66,9 +53,6 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function edit(Product $product): InertiaResponse
     {
         $this->authorize('update', $product);
@@ -80,9 +64,6 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function update(UpdateProductRequest $request, Product $product): RedirectResponse
     {
         $this->authorize('update', $product);
@@ -95,9 +76,6 @@ class ProductController extends Controller
             ->with('success', 'Product updated');
     }
 
-    /**
-     * @throws AuthorizationException
-     */
     public function destroy(Product $product): RedirectResponse
     {
         $this->authorize('delete', $product);

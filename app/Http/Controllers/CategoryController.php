@@ -6,7 +6,6 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Category;
-use mysql_xdevapi\Exception;
 
 use Inertia\Response as InertiaResponse;
 
@@ -14,13 +13,17 @@ class CategoryController extends Controller
 {
     public function index(): InertiaResponse
     {
+        $this->authorize('viewAny', Category::class);
+
         return inertia()->render('Category/CategoryIndex', [
-            'categories' => Category::all()
+            'categories' => Category::paginate(5)
         ]);
     }
 
     public function create(): InertiaResponse
     {
+        $this->authorize('create', Category::class);
+
         return inertia()->render('Category/CreateCategory');
     }
 

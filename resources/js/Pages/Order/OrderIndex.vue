@@ -22,6 +22,9 @@ import {
 // -- Icons -- //
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
+// -- Components -- //
+import Pagination from "@/Components/Pagination.vue";
+
 // -- Layouts -- //
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 
@@ -213,7 +216,7 @@ function deleteOrder(id) {
                                 </td>
 
                                 <td
-                                    class="relative py-5 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-0"
+                                    class="relative py-5 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap"
                                 >
                                     <button
                                         @click="openModal(order)"
@@ -232,6 +235,14 @@ function deleteOrder(id) {
                             </tr>
                         </tbody>
                     </table>
+
+                    <Pagination
+                        :from="props.orders.from"
+                        :to="props.orders.to"
+                        :total="props.orders.total"
+                        :prev="props.orders.prev_page_url"
+                        :next="props.orders.next_page_url"
+                    />
                 </div>
             </div>
         </div>

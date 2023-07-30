@@ -87,8 +87,8 @@ class DatabaseSeeder extends Seeder
 
         // -- Assign Roles to Users -- //
 
-        $admin->assignRole($adminRole);
-        $user->assignRole($userRole);
+        $admin->assignRole('admin');
+        $user->assignRole('user');
 
         // -- Add Media to Users -- //
 

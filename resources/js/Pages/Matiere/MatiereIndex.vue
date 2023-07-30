@@ -3,7 +3,10 @@
 import { router } from "@inertiajs/vue3";
 
 // -- Lib Components -- //
-import { Link } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
+
+// -- Components -- //
+import Pagination from "@/Components/Pagination.vue";
 
 // -- Layouts -- //
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
@@ -24,11 +27,14 @@ function deleteMaterial(id) {
 </script>
 
 <template>
+    Done
+    <Head title="Materials" />
+
     <div class="px-4 sm:px-6 lg:px-8 lg:py-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-base font-semibold leading-6 text-gray-900">
-                    Materials
+                    Material
                 </h1>
 
                 <p class="mt-2 text-sm text-gray-700">
@@ -40,7 +46,7 @@ function deleteMaterial(id) {
                 <Link
                     :href="route('matieres.create')"
                     class="block px-3 py-2 text-sm font-semibold text-center text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >Add New Material</Link
+                    >Add Material</Link
                 >
             </div>
         </div>
@@ -91,7 +97,7 @@ function deleteMaterial(id) {
                                 </td>
 
                                 <td
-                                    class="relative py-5 pl-3 pr-4 space-x-2 text-sm font-medium text-right whitespace-nowrap sm:pr-0"
+                                    class="relative py-5 pl-3 pr-4 space-x-2 text-sm font-medium text-right whitespace-nowrap"
                                 >
                                     <Link
                                         :href="
@@ -120,6 +126,14 @@ function deleteMaterial(id) {
                             </tr>
                         </tbody>
                     </table>
+
+                    <Pagination
+                        :from="props.matieres.from"
+                        :to="props.matieres.to"
+                        :total="props.matieres.total"
+                        :prev="props.matieres.prev_page_url"
+                        :next="props.matieres.next_page_url"
+                    />
                 </div>
             </div>
         </div>

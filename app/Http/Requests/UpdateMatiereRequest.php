@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\Matiere;
 
 class UpdateMatiereRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class UpdateMatiereRequest extends FormRequest
         return [
             'name' => [
                 'required', 'string',
-                Rule::unique(Matiere::class)->ignore($this->id),
+                Rule::unique(Matiere::class)->ignore($this->route('matiere')->id),
             ]
         ];
     }
