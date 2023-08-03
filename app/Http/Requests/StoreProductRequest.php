@@ -23,15 +23,15 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'category_id' => ['required', 'exists:categories,id'],
-            'matiere_id' => ['required', 'exists:matieres,id'],
+            'matiere_id'  => ['required', 'exists:matieres,id'],
 
-            'reference' => ['required', 'string'],
+            'reference'   => ['required', 'string'],
             'designation' => ['required', 'string'],
-            'buy_price' => ['required', 'integer', 'min:1'],
-            'sell_price' => ['required', 'integer', 'min:1'],
-            'weight' => ['required', 'integer', 'min:1'],
-            'discount' => ['sometimes', 'numeric', 'min:0'],
-            'quantity' => ['required', 'integer'],
+            'buy_price'   => ['required', 'integer', 'min:1'],
+            'sell_price'  => ['required', 'integer', 'min:1'],
+            'weight'      => ['required', 'integer', 'min:1'],
+            'discount'    => ['sometimes', 'numeric', 'min:0'],
+            'quantity'    => ['required', 'integer'],
         ];
     }
 }

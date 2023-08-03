@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Models\Product;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -25,18 +25,18 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'category_id' => ['required', 'exists:categories,id'],
-            'matiere_id' => ['required', 'exists:matieres,id'],
+            'matiere_id'  => ['required', 'exists:matieres,id'],
 
             'reference' => [
                 'required', 'string',
-                Rule::unique(Product::class)->ignore($this->route('product')->id)
+                Rule::unique(Product::class)->ignore($this->route('product')->id),
             ],
             'designation' => ['required', 'string'],
-            'buy_price' => ['required', 'integer', 'min:1'],
-            'sell_price' => ['required', 'integer', 'min:1'],
-            'weight' => ['required', 'integer', 'min:1'],
-            'discount' => ['sometimes', 'decimal', 'min:0'],
-            'quantity' => ['required', 'integer'],
+            'buy_price'   => ['required', 'integer', 'min:1'],
+            'sell_price'  => ['required', 'integer', 'min:1'],
+            'weight'      => ['required', 'integer', 'min:1'],
+            'discount'    => ['sometimes', 'decimal', 'min:0'],
+            'quantity'    => ['required', 'integer'],
         ];
     }
 }

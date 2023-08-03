@@ -20,12 +20,12 @@ class OrderFactory extends Factory
     {
         return [
             'product_id' => Product::all()->random()->id,
-            'user_id' => User::all()->random()->id,
+            'user_id'    => User::all()->random()->id,
 
             'tracking_number' => fake()->unique()->randomNumber(8, true),
-            'quantity' => fake()->numberBetween(1, 100),
-            'status' => fake()->randomElement([
-                'pending', 'shipped', 'delivered', 'returned'
+            'quantity'        => fake()->numberBetween(1, 100),
+            'status'          => fake()->randomElement([
+                'pending', 'shipped', 'delivered', 'returned',
             ]),
         ];
     }

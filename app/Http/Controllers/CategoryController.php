@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-use Illuminate\Http\RedirectResponse;
 use App\Models\Category;
-
+use Illuminate\Http\RedirectResponse;
 use Inertia\Response as InertiaResponse;
 
 class CategoryController extends Controller
@@ -16,7 +15,7 @@ class CategoryController extends Controller
         $this->authorize('viewAny', Category::class);
 
         return inertia()->render('Category/CategoryIndex', [
-            'categories' => Category::paginate(5)
+            'categories' => Category::paginate(5),
         ]);
     }
 
@@ -42,7 +41,7 @@ class CategoryController extends Controller
         $this->authorize('view', $category);
 
         return inertia()->render('Category/ShowCategory', [
-            'category' => $category
+            'category' => $category,
         ]);
     }
 
@@ -51,7 +50,7 @@ class CategoryController extends Controller
         $this->authorize('update', $category);
 
         return inertia()->render('Category/EditCategory', [
-            'category' => $category
+            'category' => $category,
         ]);
     }
 

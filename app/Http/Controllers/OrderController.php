@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response as InertiaResponse;
 
@@ -51,7 +51,7 @@ class OrderController extends Controller
         $order->load('product.media', 'user');
 
         return inertia()->render('Orders/ShowOrder', [
-            'order' => $order
+            'order' => $order,
         ]);
     }
 
@@ -60,7 +60,7 @@ class OrderController extends Controller
         $this->authorize('update', $order);
 
         return inertia()->render('Orders/EditOrder', [
-            'order' => $order
+            'order' => $order,
         ]);
     }
 

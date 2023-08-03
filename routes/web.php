@@ -1,14 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Product;
-use Illuminate\Support\Facades\Route;
 use App\Services\ExportService;
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +24,6 @@ Route::get('/', function () {
     return redirect()->route('login');
 })->name('welcome');
 
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -36,7 +33,7 @@ Route::middleware('auth')->group(function () {
         return inertia()->render('Dashboard', [
             'products' => Product::with('category', 'matiere', 'media')
                 ->orderBy('updated_at', 'desc')
-                ->paginate(10)
+                ->paginate(10),
         ]);
     })->name('dashboard');
 
@@ -46,9 +43,9 @@ Route::middleware('auth')->group(function () {
 
 Route::resources([
     'categories' => CategoryController::class,
-    'products' => ProductController::class,
-    'matieres' => MatiereController::class,
-    'orders' => OrderController::class,
+    'products'   => ProductController::class,
+    'matieres'   => MatiereController::class,
+    'orders'     => OrderController::class,
 ]);
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

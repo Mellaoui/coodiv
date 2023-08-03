@@ -7,8 +7,8 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Matiere;
 use App\Models\Product;
-use Inertia\Response as InertiaResponse;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Response as InertiaResponse;
 
 class ProductController extends Controller
 {
@@ -16,11 +16,10 @@ class ProductController extends Controller
     {
         $this->authorize('viewAny', Product::class);
 
-
         return inertia()->render('Product/ProductIndex', [
             'products' => Product::with('category', 'matiere', 'media')
                 ->orderBy('updated_at', 'desc')
-                ->paginate(5)
+                ->paginate(5),
         ]);
     }
 
@@ -30,7 +29,7 @@ class ProductController extends Controller
 
         return inertia()->render('Product/CreateProduct', [
             'categories' => Category::all(),
-            'matieres' => Matiere::all(),
+            'matieres'   => Matiere::all(),
         ]);
     }
 
@@ -49,7 +48,7 @@ class ProductController extends Controller
         $this->authorize('view', $product);
 
         return inertia()->render('Product/ShowProduct', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
 
@@ -58,9 +57,9 @@ class ProductController extends Controller
         $this->authorize('update', $product);
 
         return inertia()->render('Product/EditProduct', [
-            'product' => $product,
+            'product'    => $product,
             'categories' => Category::all(),
-            'matieres' => Matiere::all(),
+            'matieres'   => Matiere::all(),
         ]);
     }
 

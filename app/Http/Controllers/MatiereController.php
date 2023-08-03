@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMatiereRequest;
 use App\Http\Requests\UpdateMatiereRequest;
 use App\Models\Matiere;
-use Inertia\Response as InertiaResponse;
 use Illuminate\Http\RedirectResponse;
+use Inertia\Response as InertiaResponse;
 
 class MatiereController extends Controller
 {
@@ -15,7 +15,7 @@ class MatiereController extends Controller
         $this->authorize('viewAny', Matiere::class);
 
         return inertia()->render('Matiere/MatiereIndex', [
-            'matieres' => Matiere::paginate(5)
+            'matieres' => Matiere::paginate(5),
         ]);
     }
 
@@ -41,7 +41,7 @@ class MatiereController extends Controller
         $this->authorize('view', $matiere);
 
         return inertia()->render('Matiere/ShowMatiere', [
-            'matiere' => $matiere
+            'matiere' => $matiere,
         ]);
     }
 
@@ -50,7 +50,7 @@ class MatiereController extends Controller
         $this->authorize('update', $matiere);
 
         return inertia()->render('Matiere/EditMatiere', [
-            'matiere' => $matiere
+            'matiere' => $matiere,
         ]);
     }
 
