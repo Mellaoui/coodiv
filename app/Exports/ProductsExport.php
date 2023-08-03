@@ -3,8 +3,8 @@
 namespace App\Exports;
 
 use App\Models\Product;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ProductsExport implements FromCollection
 {
@@ -12,17 +12,17 @@ class ProductsExport implements FromCollection
     {
         $headers = collect([
             [
-                'reference' => 'Reference',
-                'designation' => 'Designation',
-                'category' => 'Category',
-                'matiere' => 'Material',
-                'buy_price' => 'Buy Price',
-                'sell_price' => 'Sell Price',
-                'weight' => 'Weight',
-                'discount' => 'Discount',
-                'quantity' => 'Quantity',
+                'reference'    => 'Reference',
+                'designation'  => 'Designation',
+                'category'     => 'Category',
+                'matiere'      => 'Material',
+                'buy_price'    => 'Buy Price',
+                'sell_price'   => 'Sell Price',
+                'weight'       => 'Weight',
+                'discount'     => 'Discount',
+                'quantity'     => 'Quantity',
                 'last_updated' => 'Last Updated',
-            ]
+            ],
         ]);
 
         $data = Product::with('category', 'matiere')
@@ -30,15 +30,15 @@ class ProductsExport implements FromCollection
             ->get()
             ->map(function (Product $product) {
                 return [
-                    'reference' => $product->reference,
-                    'designation' => $product->designation,
-                    'category' => $product->category->name,
-                    'matiere' => $product->matiere->name,
-                    'buy_price' => $product->buy_price,
-                    'sell_price' => $product->sell_price,
-                    'weight' => $product->weight,
-                    'discount' => $product->discount,
-                    'quantity' => $product->quantity,
+                    'reference'    => $product->reference,
+                    'designation'  => $product->designation,
+                    'category'     => $product->category->name,
+                    'matiere'      => $product->matiere->name,
+                    'buy_price'    => $product->buy_price,
+                    'sell_price'   => $product->sell_price,
+                    'weight'       => $product->weight,
+                    'discount'     => $product->discount,
+                    'quantity'     => $product->quantity,
                     'last_updated' => $product->updated_at->format('Y/m/d H:i'),
                 ];
             });

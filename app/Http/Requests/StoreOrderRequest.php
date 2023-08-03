@@ -24,13 +24,13 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'product_id' => ['required', 'exists:products,id'],
-            'user_id' => ['required', 'exists:users,id'],
+            'user_id'    => ['required', 'exists:users,id'],
 
             'tracking_number' => ['required', 'string', 'unique:orders,tracking_number'],
-            'quantity' => ['required', 'integer'],
-            'status' => [
+            'quantity'        => ['required', 'integer'],
+            'status'          => [
                 'required', 'string',
-                Rule::in(['pending', 'shipped', 'delivered', 'returned'])
+                Rule::in(['pending', 'shipped', 'delivered', 'returned']),
             ],
         ];
     }

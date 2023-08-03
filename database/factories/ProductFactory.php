@@ -20,15 +20,15 @@ class ProductFactory extends Factory
     {
         return [
             'category_id' => Category::all()->random()->id,
-            'matiere_id' => Matiere::all()->random()->id,
+            'matiere_id'  => Matiere::all()->random()->id,
 
-            'reference' => fake()->text(10),
+            'reference'   => fake()->text(10),
             'designation' => fake()->text(20),
-            'buy_price' => fake()->numberBetween(100, 1000),
-            'sell_price' => fake()->numberBetween(100, 1000),
-            'weight' => fake()->numberBetween(100, 1000),
-            'discount' => fake()->numberBetween(0, 100),
-            'quantity' => fake()->numberBetween(0, 100),
+            'buy_price'   => fake()->numberBetween(100, 1000),
+            'sell_price'  => fake()->numberBetween(100, 1000),
+            'weight'      => fake()->numberBetween(100, 1000),
+            'discount'    => fake()->numberBetween(0, 100),
+            'quantity'    => fake()->numberBetween(0, 100),
         ];
     }
 }

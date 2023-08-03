@@ -9,10 +9,10 @@ use App\Models\Matiere;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Factories\Sequence;
-use Spatie\Permission\Models\Role;
+use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -76,12 +76,12 @@ class DatabaseSeeder extends Seeder
         // -- Create Users -- //
 
         $admin = User::factory()->create([
-            'name' => 'Test Admin',
+            'name'  => 'Test Admin',
             'email' => 'admin@shoop.com',
         ]);
 
         $user = User::factory()->create([
-            'name' => 'Test User',
+            'name'  => 'Test User',
             'email' => 'user@shoop.com',
         ]);
 

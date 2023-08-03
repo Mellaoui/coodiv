@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Matiere;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Models\Matiere;
 
 class UpdateMatiereRequest extends FormRequest
 {
@@ -27,7 +27,7 @@ class UpdateMatiereRequest extends FormRequest
             'name' => [
                 'required', 'string',
                 Rule::unique(Matiere::class)->ignore($this->route('matiere')->id),
-            ]
+            ],
         ];
     }
 }

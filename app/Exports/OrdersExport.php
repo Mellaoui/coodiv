@@ -12,15 +12,15 @@ class OrdersExport implements FromCollection
     {
         $headers = collect([
             [
-                'identifier' => 'Order ID',
+                'identifier'      => 'Order ID',
                 'tracking_number' => 'Tracking Number',
-                'customer' => 'Customer',
-                'product' => 'Product',
-                'status' => 'Status',
-                'quantity' => 'Quantity',
-                'total_price' => 'Total Price',
-                'last_updated' => 'Last Updated'
-            ]
+                'customer'        => 'Customer',
+                'product'         => 'Product',
+                'status'          => 'Status',
+                'quantity'        => 'Quantity',
+                'total_price'     => 'Total Price',
+                'last_updated'    => 'Last Updated',
+            ],
         ]);
 
         $data = Order::with('product', 'user')
@@ -28,14 +28,14 @@ class OrdersExport implements FromCollection
             ->get()
             ->map(function (Order $order) {
                 return [
-                    'identifier' => $order->id,
+                    'identifier'      => $order->id,
                     'tracking_number' => $order->tracking_number,
-                    'customer' => $order->user->name,
-                    'product' => $order->product->reference,
-                    'status' => $order->status,
-                    'quantity' => $order->quantity,
-                    'total_price' => $order->total_price,
-                    'last_updated' => $order->updated_at->format('Y/m/d H:i')
+                    'customer'        => $order->user->name,
+                    'product'         => $order->product->reference,
+                    'status'          => $order->status,
+                    'quantity'        => $order->quantity,
+                    'total_price'     => $order->total_price,
+                    'last_updated'    => $order->updated_at->format('Y/m/d H:i'),
                 ];
             });
 
